@@ -254,8 +254,6 @@ export default function OceanBehavioralGroup() {
           font-size: 10px; font-weight: 600; display: flex; align-items: center; justify-content: center; }
 
         .hero { min-height: 100vh; padding: 140px 48px 80px; background: var(--cream); position: relative; overflow: hidden; display: flex; align-items: center; }
-        .hero-bg { position: absolute; top: 0; right: -10%; width: 65%; height: 100%;
-          background: radial-gradient(ellipse at center, rgba(10, 25, 41, 0.85) 0%, var(--navy-deep) 70%); clip-path: ellipse(70% 90% at 65% 50%); }
         .hero-grid { max-width: 1280px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1.1fr 1fr;
           gap: 80px; align-items: center; position: relative; z-index: 2; }
         .hero-eyebrow { font-family: 'Outfit', sans-serif; font-size: 11px; letter-spacing: 0.4em; text-transform: uppercase;
@@ -275,14 +273,15 @@ export default function OceanBehavioralGroup() {
         .btn-secondary:hover { background: var(--navy); color: var(--cream); }
         .hero-logo-wrap { position: relative; display: flex; justify-content: center; align-items: center; }
         .hero-logo-glow { position: absolute; width: 110%; height: 110%; background: radial-gradient(circle, rgba(201, 169, 110, 0.18) 0%, transparent 65%); z-index: 0; }
-        .hero-logo-img { width: 100%; max-width: 460px; height: auto; position: relative; z-index: 1;
-          filter: drop-shadow(0 30px 60px rgba(10, 25, 41, 0.35)); animation: gentle-float 6s ease-in-out infinite; }
+        .hero-logo-img { width: 100%; max-width: 440px; height: auto; position: relative; z-index: 1;
+          border-radius: 20px; border: 1px solid rgba(201, 169, 110, 0.45);
+          box-shadow: 0 30px 70px rgba(10, 25, 41, 0.18); animation: gentle-float 6s ease-in-out infinite; }
         @keyframes gentle-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
         .hero-orbit { position: absolute; top: 50%; left: 50%; width: 96%; height: 96%; border: 1px dashed rgba(201, 169, 110, 0.3);
           border-radius: 50%; transform: translate(-50%, -50%); animation: spin 80s linear infinite; }
         @keyframes spin { to { transform: translate(-50%, -50%) rotate(360deg); } }
         @media (max-width: 900px) {
-          .hero { padding: 120px 24px 60px; } .hero-bg { display: none; } .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+          .hero { padding: 120px 24px 60px; } .hero-grid { grid-template-columns: 1fr; gap: 40px; }
           .hero-logo-img { max-width: 260px; } .nav { padding: 16px 20px; } .nav.scrolled { padding: 10px 20px; }
           .nav-links { display: none; } .nav-name { font-size: 14px; }
         }
@@ -461,7 +460,6 @@ export default function OceanBehavioralGroup() {
 
       {/* HERO */}
       <section className="hero" id="top">
-        <div className="hero-bg" />
         <div className="hero-grid">
           <div>
             <div className="hero-eyebrow">{t.heroEyebrow}</div>
