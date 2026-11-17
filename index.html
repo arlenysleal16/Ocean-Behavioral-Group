@@ -1,13 +1,572 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ocean Behavioral Group — RBT Training & Professional Services | Miramar, FL</title>
-    <meta name="description" content="RBT training, competency assessment, credential renewal, and business services for behavior technicians. Bilingual EN/ES. Miramar, Florida." />
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/main.jsx"></script>
-  </body>
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ocean Behavioral Group Website</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+/* Layout idea: a calm cream page with one deep-navy tide (the hero wave and the rate cards);
+   everything else is quiet type on paper. Home routes two audiences; each service has its own view. */
+:root{
+  color-scheme: light;
+  --paper:#F3EEE3;
+  --paper-2:#EAE3D3;
+  --card:#FBF8F1;
+  --navy:#0B2447;
+  --ocean:#1C4E80;
+  --gold:#C0A062;
+  --gold-ink:#86692B;
+  --ink:#14213A;
+  --muted:#5E5647;
+  --line:#D8D0BE;
+  --display:"Playfair Display", Georgia, "Times New Roman", serif;
+  --body:"Outfit", "Helvetica Neue", Arial, sans-serif;
+  --wrap:1120px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-weight:300;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3{font-family:var(--display);font-weight:500;color:var(--navy);margin:0;text-wrap:balance;letter-spacing:-.01em}
+h1{font-size:clamp(2.3rem,5.4vw,4rem);line-height:1.06}
+h2{font-size:clamp(1.7rem,3.2vw,2.5rem);line-height:1.15}
+h3{font-size:1.35rem;line-height:1.25}
+p{margin:0;max-width:62ch}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px}
+.eyebrow{font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-ink);font-weight:500}
+.lead{font-size:1.15rem;color:var(--muted)}
+.muted{color:var(--muted)}
+:focus-visible{outline:2px solid var(--ocean);outline-offset:3px;border-radius:4px}
+
+/* language toggle */
+html[data-lang="en"] .es{display:none!important}
+html[data-lang="es"] .en{display:none!important}
+
+/* header */
+.top{position:sticky;top:0;z-index:20;background:rgba(243,238,227,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:20px;min-height:72px;flex-wrap:wrap;padding-top:8px;padding-bottom:8px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;margin-right:auto}
+.brand img{width:52px;height:auto}
+.brand b{font-family:var(--display);font-weight:500;font-size:1.2rem;color:var(--navy);letter-spacing:.06em;line-height:1.1;display:block}
+.brand small{display:block;font-size:.64rem;letter-spacing:.3em;color:var(--gold-ink);text-transform:uppercase;font-weight:500}
+nav{display:flex;gap:4px;flex-wrap:wrap}
+nav a{text-decoration:none;font-size:.95rem;font-weight:400;padding:8px 12px;border-radius:999px;color:var(--ink)}
+nav a:hover{background:var(--paper-2)}
+nav a[aria-current="page"]{background:var(--navy);color:#fff}
+.lang{display:flex;border:1px solid var(--navy);border-radius:999px;overflow:hidden}
+.lang button{font:inherit;font-size:.82rem;font-weight:500;letter-spacing:.08em;border:0;background:transparent;color:var(--navy);padding:6px 12px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--navy);color:#fff}
+
+/* views */
+.js .view{display:none}
+.js .view.on{display:block}
+.view{padding-bottom:0}
+.sec{padding:72px 0}
+.sec.tight{padding:48px 0}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-weight:500;font-size:1rem;padding:14px 24px;border-radius:999px;background:var(--navy);color:#fff;border:1px solid var(--navy);cursor:pointer;font-family:var(--body);transition:background .2s,transform .2s}
+.btn:hover{background:var(--ocean);border-color:var(--ocean);transform:translateY(-1px)}
+.btn.ghost{background:transparent;color:var(--navy)}
+.btn.ghost:hover{background:var(--paper-2)}
+.btn.gold{background:var(--gold);border-color:var(--gold);color:var(--navy)}
+.btn.gold:hover{background:#d0b274;border-color:#d0b274}
+.row{display:flex;gap:14px;flex-wrap:wrap}
+
+/* hero */
+.hero{padding:64px 0 0;position:relative;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center}
+.hero h1 em{font-style:italic;color:var(--ocean)}
+.hero .lead{margin:22px 0 30px}
+.hero-logo{justify-self:center;width:min(400px,100%)}
+.served{margin-top:26px;font-size:.92rem;color:var(--muted);display:flex;gap:10px 22px;flex-wrap:wrap}
+.served > span::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--gold);margin-right:9px;vertical-align:middle}
+.tide{display:block;width:100%;height:90px;margin-top:40px}
+
+/* two paths */
+.paths{background:var(--navy);color:#fff;padding:0 0 72px}
+.paths .wrap{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.path{border:1px solid rgba(192,160,98,.45);border-radius:18px;padding:34px 30px;display:flex;flex-direction:column;gap:14px;background:rgba(255,255,255,.03)}
+.path h2{color:#fff;font-size:1.9rem}
+.path p{color:#D5DCE8}
+.path .eyebrow{color:var(--gold)}
+.path ul{list-style:none;margin:6px 0 10px;padding:0;display:grid;gap:8px}
+.path li{padding-left:22px;position:relative;color:#EEF1F6}
+.path li::before{content:"";position:absolute;left:0;top:.68em;width:10px;height:1px;background:var(--gold)}
+.path .row{margin-top:auto}
+
+/* service index */
+.index{border-top:1px solid var(--navy);margin-top:34px}
+.index a{display:grid;grid-template-columns:1.1fr 1.6fr auto 24px;gap:20px;align-items:baseline;padding:22px 6px;border-bottom:1px solid var(--line);text-decoration:none;transition:background .2s,padding .2s}
+.index a:hover{background:var(--card);padding-left:14px}
+.index .n{font-family:var(--display);font-size:1.3rem;color:var(--navy);font-weight:500}
+.index .d{color:var(--muted);font-size:.98rem}
+.index .p{font-variant-numeric:tabular-nums;font-weight:500;color:var(--navy);white-space:nowrap;text-align:right}
+.index .p small{font-weight:300;color:var(--muted)}
+.index .a{color:var(--gold-ink)}
+
+/* facts */
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:34px}
+.fact{border-top:2px solid var(--gold);padding-top:18px}
+.fact p{color:var(--muted);margin-top:8px;font-size:.98rem}
+
+/* page head */
+.phead{padding:60px 0 34px;border-bottom:1px solid var(--line)}
+.phead h1{font-size:clamp(2rem,4.4vw,3.2rem);margin:12px 0 16px}
+.back{font-size:.9rem;text-decoration:none;color:var(--gold-ink);font-weight:500}
+
+/* generic grids */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:start}
+.list{list-style:none;margin:20px 0 0;padding:0;display:grid;gap:0}
+.list li{padding:16px 0;border-bottom:1px solid var(--line);display:grid;gap:4px}
+.list li b{font-weight:500;color:var(--navy)}
+.list li span{color:var(--muted);font-size:.97rem}
+.steps{counter-reset:s;list-style:none;margin:24px 0 0;padding:0;display:grid;gap:18px}
+.steps li{counter-increment:s;display:grid;grid-template-columns:46px 1fr;gap:16px;align-items:start}
+.steps li::before{content:counter(s);font-family:var(--display);font-size:1.25rem;color:var(--navy);width:46px;height:46px;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;background:var(--card)}
+.steps b{font-weight:500;color:var(--navy);display:block}
+.steps span{color:var(--muted);font-size:.97rem}
+.note{background:var(--card);border-left:3px solid var(--gold);padding:18px 22px;border-radius:0 12px 12px 0;color:var(--muted);font-size:.97rem;margin-top:28px}
+.note b{color:var(--navy);font-weight:500}
+
+/* rate cards */
+.rates{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:30px}
+.rate{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:32px 30px;display:flex;flex-direction:column;gap:14px}
+.rate.dark{background:var(--navy);border-color:var(--navy);color:#fff}
+.rate.dark h3,.rate.dark .amt{color:#fff}
+.rate.dark p,.rate.dark li{color:#D5DCE8}
+.rate.dark .eyebrow{color:var(--gold)}
+.amt{font-family:var(--display);font-size:3.2rem;line-height:1;color:var(--navy);font-variant-numeric:tabular-nums}
+.amt small{font-family:var(--body);font-size:1rem;font-weight:300;color:var(--muted);margin-left:6px}
+.rate.dark .amt small{color:#C9D2E0}
+.rate ul{list-style:none;margin:4px 0 8px;padding:0;display:grid;gap:8px}
+.rate li{padding-left:22px;position:relative;color:var(--muted);font-size:.97rem}
+.rate li::before{content:"";position:absolute;left:0;top:.68em;width:10px;height:1px;background:var(--gold)}
+.rate .btn{margin-top:auto;align-self:flex-start}
+
+/* contact */
+.contact{background:var(--navy);color:#fff}
+.contact h2{color:#fff}
+.contact p{color:#D5DCE8}
+.contact .eyebrow{color:var(--gold)}
+.cgrid{display:grid;grid-template-columns:.9fr 1.1fr;gap:48px}
+.cinfo{display:grid;gap:18px;margin-top:26px}
+.cinfo div{border-top:1px solid rgba(192,160,98,.45);padding-top:12px}
+.cinfo small{display:block;font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:500}
+.cinfo span{font-size:1.05rem}
+.todo{background:rgba(192,160,98,.22);border:1px dashed var(--gold);border-radius:6px;padding:1px 8px}
+form{display:grid;gap:14px;background:var(--paper);border-radius:18px;padding:30px;color:var(--ink)}
+form .f2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+label{display:grid;gap:6px;font-size:.86rem;font-weight:500;color:var(--navy)}
+input,select,textarea{font:inherit;font-weight:300;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);width:100%}
+textarea{min-height:110px;resize:vertical}
+#form-status{font-size:.92rem;color:var(--muted);min-height:1.4em;max-width:none}
+
+footer{background:#081A35;color:#B9C3D4;font-size:.9rem;padding:28px 0}
+footer .wrap{display:flex;gap:12px 28px;flex-wrap:wrap;justify-content:space-between}
+footer a{text-decoration:none}
+footer a:hover{color:#fff}
+
+@media (max-width:860px){
+  .hero .wrap,.paths .wrap,.two,.rates,.cgrid,.facts{grid-template-columns:1fr}
+  .hero-logo{order:-1;width:240px}
+  .hero{padding-top:36px}
+  .index a{grid-template-columns:1fr auto;gap:6px 16px}
+  .index .d{grid-column:1/-1;order:3}
+  .index .a{display:none}
+  .sec{padding:52px 0}
+  nav{order:3;width:100%;overflow-x:auto;flex-wrap:nowrap;padding-bottom:4px}
+  nav a{white-space:nowrap}
+  form .f2{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#home">
+      <img src="emblem.png" alt="">
+      <span><b>OCEAN</b><small>Behavioral Group</small></span>
+    </a>
+    <nav aria-label="Main">
+      <a href="#aba-therapy" data-nav="aba-therapy"><span class="en">ABA Therapy</span><span class="es">Terapia ABA</span></a>
+      <a href="#rbt-services" data-nav="rbt-services"><span class="en">RBT Services</span><span class="es">Servicios RBT</span></a>
+      <a href="#supervision" data-nav="supervision"><span class="en">Supervision</span><span class="es">Supervisión</span></a>
+      <a href="#more-services" data-nav="more-services"><span class="en">More Services</span><span class="es">Más servicios</span></a>
+      <a href="#contact" data-nav="contact"><span class="en">Contact</span><span class="es">Contacto</span></a>
+    </nav>
+    <div class="lang" role="group" aria-label="Language / Idioma">
+      <button type="button" id="lang-en" aria-pressed="true">EN</button>
+      <button type="button" id="lang-es" aria-pressed="false">ES</button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ================= HOME ================= -->
+<section class="view on" data-view="home">
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow"><span class="en">Miramar, Florida · English &amp; Spanish</span><span class="es">Miramar, Florida · Inglés y español</span></p>
+        <h1 style="margin-top:14px">
+          <span class="en">Behavior analysis for families, and for <em>the people who practice it.</em></span>
+          <span class="es">Análisis de conducta para las familias y para <em>quienes lo ejercen.</em></span>
+        </h1>
+        <p class="lead">
+          <span class="en">Ocean Behavioral Group provides BCBA-led ABA therapy at home and in the community, and supports RBTs and future behavior analysts with competency assessments, renewals and supervised fieldwork.</span>
+          <span class="es">Ocean Behavioral Group ofrece terapia ABA dirigida por un BCBA en el hogar y en la comunidad, y apoya a los RBT y futuros analistas de conducta con evaluaciones de competencia, renovaciones y supervisión de horas de práctica.</span>
+        </p>
+        <div class="row">
+          <a class="btn" href="#aba-therapy"><span class="en">ABA therapy for my child</span><span class="es">Terapia ABA para mi hijo</span></a>
+          <a class="btn ghost" href="#supervision"><span class="en">I work in ABA</span><span class="es">Trabajo en ABA</span></a>
+        </div>
+        <div class="served">
+          <span>Broward</span><span>Miami-Dade</span>
+          <span><span class="en">In-home and community</span><span class="es">En el hogar y la comunidad</span></span>
+        </div>
+      </div>
+      <img class="hero-logo" src="logo.png" alt="Ocean Behavioral Group">
+    </div>
+    <svg class="tide" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 52 C 180 8, 360 8, 540 44 S 900 92, 1080 48 S 1320 6, 1440 40 L1440 90 L0 90Z" fill="#C0A062" opacity=".55"/>
+      <path d="M0 62 C 200 22, 380 26, 560 56 S 920 98, 1100 60 S 1330 24, 1440 54 L1440 90 L0 90Z" fill="#0B2447"/>
+    </svg>
+  </div>
+
+  <div class="paths">
+    <div class="wrap">
+      <div class="path">
+        <p class="eyebrow"><span class="en">For families</span><span class="es">Para las familias</span></p>
+        <h2><span class="en">ABA therapy</span><span class="es">Terapia ABA</span></h2>
+        <p><span class="en">Individualized programs for children and adolescents, built from a BCBA assessment and delivered where daily life happens.</span><span class="es">Programas individualizados para niños y adolescentes, diseñados a partir de una evaluación del BCBA y realizados donde transcurre la vida diaria.</span></p>
+        <ul>
+          <li><span class="en">Behavior assessment and treatment planning</span><span class="es">Evaluación de conducta y plan de tratamiento</span></li>
+          <li><span class="en">In-home and community sessions</span><span class="es">Sesiones en el hogar y en la comunidad</span></li>
+          <li><span class="en">Caregiver training at every stage</span><span class="es">Entrenamiento a cuidadores en cada etapa</span></li>
+        </ul>
+        <div class="row"><a class="btn gold" href="#aba-therapy"><span class="en">See how to start</span><span class="es">Cómo empezar</span></a></div>
+      </div>
+      <div class="path">
+        <p class="eyebrow"><span class="en">For professionals</span><span class="es">Para profesionales</span></p>
+        <h2><span class="en">RBTs and future analysts</span><span class="es">RBT y futuros analistas</span></h2>
+        <p><span class="en">The steps between your training and your credential, handled by a practicing BCBA.</span><span class="es">Los pasos entre tu entrenamiento y tu credencial, a cargo de un BCBA en ejercicio.</span></p>
+        <ul>
+          <li><span class="en">RBT initial competency assessment</span><span class="es">Evaluación inicial de competencia RBT</span></li>
+          <li><span class="en">RBT credential renewal</span><span class="es">Renovación de la credencial RBT</span></li>
+          <li><span class="en">Fieldwork supervision for BCBA and BCaBA candidates</span><span class="es">Supervisión de horas de práctica para candidatos a BCBA y BCaBA</span></li>
+        </ul>
+        <div class="row">
+          <a class="btn gold" href="#rbt-services"><span class="en">RBT services</span><span class="es">Servicios RBT</span></a>
+          <a class="btn ghost" style="color:#fff;border-color:rgba(255,255,255,.5)" href="#supervision"><span class="en">Supervision</span><span class="es">Supervisión</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="wrap">
+      <p class="eyebrow"><span class="en">Everything we offer</span><span class="es">Todo lo que ofrecemos</span></p>
+      <h2 style="margin-top:10px"><span class="en">Services and prices</span><span class="es">Servicios y precios</span></h2>
+      <div class="index">
+        <a href="#aba-therapy">
+          <span class="n"><span class="en">ABA Therapy</span><span class="es">Terapia ABA</span></span>
+          <span class="d"><span class="en">Assessment, treatment and caregiver training for children and adolescents.</span><span class="es">Evaluación, tratamiento y entrenamiento a cuidadores para niños y adolescentes.</span></span>
+          <span class="p"><small><span class="en">Ask about coverage</span><span class="es">Consulta tu cobertura</span></small></span><span class="a">→</span>
+        </a>
+        <a href="#rbt-services">
+          <span class="n"><span class="en">RBT Competency Assessment</span><span class="es">Evaluación de Competencia RBT</span></span>
+          <span class="d"><span class="en">The initial competency assessment the BACB requires before you apply.</span><span class="es">La evaluación inicial de competencia que exige la BACB antes de aplicar.</span></span>
+          <span class="p">$450</span><span class="a">→</span>
+        </a>
+        <a href="#rbt-services">
+          <span class="n"><span class="en">RBT Credential Renewal</span><span class="es">Renovación de Credencial RBT</span></span>
+          <span class="d"><span class="en">Guidance and documentation to keep your certification active.</span><span class="es">Orientación y documentación para mantener activa tu certificación.</span></span>
+          <span class="p">$300</span><span class="a">→</span>
+        </a>
+        <a href="#supervision">
+          <span class="n"><span class="en">Supervised Fieldwork</span><span class="es">Práctica Supervisada</span></span>
+          <span class="d"><span class="en">Monthly supervision for BCBA and BCaBA candidates.</span><span class="es">Supervisión mensual para candidatos a BCBA y BCaBA.</span></span>
+          <span class="p">$375 <small><span class="en">/ month</span><span class="es">/ mes</span></small></span><span class="a">→</span>
+        </a>
+        <a href="#supervision">
+          <span class="n"><span class="en">Concentrated Fieldwork</span><span class="es">Práctica Concentrada</span></span>
+          <span class="d"><span class="en">More supervision each month, fewer total hours to complete.</span><span class="es">Más supervisión cada mes y menos horas totales por completar.</span></span>
+          <span class="p">$475 <small><span class="en">/ month</span><span class="es">/ mes</span></small></span><span class="a">→</span>
+        </a>
+        <a href="#more-services">
+          <span class="n"><span class="en">ABA-Focused CV</span><span class="es">Currículum enfocado en ABA</span></span>
+          <span class="d"><span class="en">A résumé written for ABA employers.</span><span class="es">Un currículum redactado para empleadores de ABA.</span></span>
+          <span class="p">$25</span><span class="a">→</span>
+        </a>
+        <a href="#more-services">
+          <span class="n"><span class="en">Document Notarization</span><span class="es">Notarización de Documentos</span></span>
+          <span class="d"><span class="en">Notary service for your professional paperwork.</span><span class="es">Servicio notarial para tus documentos profesionales.</span></span>
+          <span class="p">$10</span><span class="a">→</span>
+        </a>
+      </div>
+
+      <div class="facts">
+        <div class="fact"><h3><span class="en">BCBA-led</span><span class="es">Dirigido por un BCBA</span></h3><p><span class="en">A Board Certified Behavior Analyst designs each program and conducts each assessment.</span><span class="es">Un Analista de Conducta Certificado diseña cada programa y realiza cada evaluación.</span></p></div>
+        <div class="fact"><h3><span class="en">Fully bilingual</span><span class="es">Totalmente bilingüe</span></h3><p><span class="en">Every service, form and conversation is available in English and Spanish.</span><span class="es">Cada servicio, formulario y conversación está disponible en inglés y español.</span></p></div>
+        <div class="fact"><h3><span class="en">Two counties</span><span class="es">Dos condados</span></h3><p><span class="en">Based in Miramar and serving families and professionals across Broward and Miami-Dade.</span><span class="es">Con base en Miramar, atendemos a familias y profesionales en Broward y Miami-Dade.</span></p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ABA THERAPY ================= -->
+<section class="view" data-view="aba-therapy">
+  <div class="phead"><div class="wrap">
+    <a class="back" href="#home">← <span class="en">Home</span><span class="es">Inicio</span></a>
+    <h1><span class="en">ABA therapy at home and in the community</span><span class="es">Terapia ABA en el hogar y en la comunidad</span></h1>
+    <p class="lead"><span class="en">Applied behavior analysis for children and adolescents in Broward and Miami-Dade. Each program starts with an assessment by our BCBA and includes training for the caregivers who are with the child every day.</span><span class="es">Análisis de conducta aplicado para niños y adolescentes en Broward y Miami-Dade. Cada programa comienza con una evaluación de nuestro BCBA e incluye entrenamiento para los cuidadores que acompañan al niño cada día.</span></p>
+  </div></div>
+  <div class="sec"><div class="wrap two">
+    <div>
+      <p class="eyebrow"><span class="en">What we provide</span><span class="es">Lo que ofrecemos</span></p>
+      <ul class="list">
+        <li><b><span class="en">Behavior assessment</span><span class="es">Evaluación de conducta</span></b><span><span class="en">We observe, interview and measure to understand your child's skills and the reasons behind challenging behavior.</span><span class="es">Observamos, entrevistamos y medimos para entender las habilidades de tu hijo y las razones de la conducta difícil.</span></span></li>
+        <li><b><span class="en">Individualized treatment plan</span><span class="es">Plan de tratamiento individualizado</span></b><span><span class="en">Goals for communication, daily living and social skills, chosen with your family's priorities.</span><span class="es">Metas de comunicación, vida diaria y habilidades sociales, elegidas según las prioridades de tu familia.</span></span></li>
+        <li><b><span class="en">One-to-one sessions</span><span class="es">Sesiones uno a uno</span></b><span><span class="en">A Registered Behavior Technician works with your child at home or in the community, supervised by the BCBA.</span><span class="es">Un Técnico de Conducta Registrado trabaja con tu hijo en casa o en la comunidad, bajo la supervisión del BCBA.</span></span></li>
+        <li><b><span class="en">Caregiver training</span><span class="es">Entrenamiento a cuidadores</span></b><span><span class="en">You learn the same strategies we use, so skills carry over into daily routines.</span><span class="es">Aprendes las mismas estrategias que usamos, para que las habilidades se mantengan en la rutina diaria.</span></span></li>
+        <li><b><span class="en">Service in your language</span><span class="es">Atención en tu idioma</span></b><span><span class="en">Sessions, plans and meetings in English or Spanish.</span><span class="es">Sesiones, planes y reuniones en inglés o español.</span></span></li>
+      </ul>
+    </div>
+    <div>
+      <p class="eyebrow"><span class="en">How to start</span><span class="es">Cómo empezar</span></p>
+      <ol class="steps">
+        <li><div><b><span class="en">Request an intake call</span><span class="es">Solicita una llamada inicial</span></b><span><span class="en">Tell us about your child and what you are looking for.</span><span class="es">Cuéntanos sobre tu hijo y lo que buscas.</span></span></div></li>
+        <li><div><b><span class="en">We review your documents</span><span class="es">Revisamos tus documentos</span></b><span><span class="en">We look at the diagnosis and referral you have and tell you what your health plan asks for.</span><span class="es">Revisamos el diagnóstico y el referido que tengas y te decimos qué pide tu plan de salud.</span></span></div></li>
+        <li><div><b><span class="en">Assessment with the BCBA</span><span class="es">Evaluación con el BCBA</span></b><span><span class="en">Our analyst meets your child and family and writes the treatment plan.</span><span class="es">Nuestro analista conoce a tu hijo y a tu familia y redacta el plan de tratamiento.</span></span></div></li>
+        <li><div><b><span class="en">Sessions begin</span><span class="es">Comienzan las sesiones</span></b><span><span class="en">Once the plan is approved, we set a schedule that fits your family.</span><span class="es">Una vez aprobado el plan, acordamos un horario que se ajuste a tu familia.</span></span></div></li>
+      </ol>
+      <div class="note"><b><span class="en">Coverage.</span><span class="es">Cobertura.</span></b> <span class="en">We confirm your plan and any referral it requires before services start, so there are no surprises.</span><span class="es">Confirmamos tu plan y cualquier referido que requiera antes de iniciar los servicios, para que no haya sorpresas.</span></div>
+      <div class="row" style="margin-top:28px"><a class="btn" href="#contact"><span class="en">Request an intake call</span><span class="es">Solicitar llamada inicial</span></a></div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ================= RBT SERVICES ================= -->
+<section class="view" data-view="rbt-services">
+  <div class="phead"><div class="wrap">
+    <a class="back" href="#home">← <span class="en">Home</span><span class="es">Inicio</span></a>
+    <h1><span class="en">RBT competency assessments and renewals</span><span class="es">Evaluaciones de competencia y renovaciones RBT</span></h1>
+    <p class="lead"><span class="en">Finished your 40-hour training? These are the next steps to earn your RBT credential and keep it. Both services are available in English and Spanish.</span><span class="es">¿Terminaste tu entrenamiento de 40 horas? Estos son los siguientes pasos para obtener tu credencial RBT y conservarla. Ambos servicios están disponibles en inglés y español.</span></p>
+  </div></div>
+  <div class="sec"><div class="wrap">
+    <div class="rates">
+      <div class="rate dark">
+        <p class="eyebrow"><span class="en">Before you apply</span><span class="es">Antes de aplicar</span></p>
+        <h3><span class="en">Initial Competency Assessment</span><span class="es">Evaluación Inicial de Competencia</span></h3>
+        <div class="amt">$450</div>
+        <p><span class="en">The BACB requires every RBT applicant to demonstrate the required tasks to a qualified assessor. Our BCBA conducts and signs yours.</span><span class="es">La BACB exige que cada aspirante a RBT demuestre las tareas requeridas ante un evaluador calificado. Nuestro BCBA realiza y firma la tuya.</span></p>
+        <ul>
+          <li><span class="en">Tasks assessed with a client, by role-play or by interview</span><span class="es">Tareas evaluadas con un cliente, mediante juego de roles o entrevista</span></li>
+          <li><span class="en">A preparation guide so you know what to expect</span><span class="es">Una guía de preparación para que sepas qué esperar</span></li>
+          <li><span class="en">Scheduled around your application date, since the assessment must fall within 90 days of applying</span><span class="es">Programada según tu fecha de aplicación, ya que la evaluación debe realizarse dentro de los 90 días previos a aplicar</span></li>
+          <li><span class="en">Signed BACB assessment form when every task is demonstrated</span><span class="es">Formulario de la BACB firmado cuando todas las tareas estén demostradas</span></li>
+        </ul>
+        <a class="btn gold" href="#contact"><span class="en">Schedule my assessment</span><span class="es">Programar mi evaluación</span></a>
+      </div>
+      <div class="rate">
+        <p class="eyebrow"><span class="en">Already certified</span><span class="es">Ya certificado</span></p>
+        <h3><span class="en">Credential Renewal</span><span class="es">Renovación de Credencial</span></h3>
+        <div class="amt">$300</div>
+        <p><span class="en">We walk you through what your renewal cycle requires and complete the parts that need a BCBA.</span><span class="es">Te guiamos en lo que exige tu ciclo de renovación y completamos las partes que requieren un BCBA.</span></p>
+        <ul>
+          <li><span class="en">Review of your current BACB renewal requirements</span><span class="es">Revisión de tus requisitos actuales de renovación ante la BACB</span></li>
+          <li><span class="en">Any assessment or documentation your renewal calls for</span><span class="es">Cualquier evaluación o documentación que tu renovación requiera</span></li>
+          <li><span class="en">Deadline tracking so your certification does not lapse</span><span class="es">Seguimiento de fechas para que tu certificación no caduque</span></li>
+        </ul>
+        <a class="btn" href="#contact"><span class="en">Start my renewal</span><span class="es">Iniciar mi renovación</span></a>
+      </div>
+    </div>
+    <div class="note"><b><span class="en">Still need the 40-hour training?</span><span class="es">¿Aún necesitas el entrenamiento de 40 horas?</span></b> <span class="en">Several online providers offer it at no cost. Complete it with any provider that meets the BACB requirements, then bring us your certificate for the competency assessment.</span><span class="es">Varios proveedores en línea lo ofrecen sin costo. Complétalo con cualquier proveedor que cumpla los requisitos de la BACB y tráenos tu certificado para la evaluación de competencia.</span></div>
+  </div></div>
+</section>
+
+<!-- ================= SUPERVISION ================= -->
+<section class="view" data-view="supervision">
+  <div class="phead"><div class="wrap">
+    <a class="back" href="#home">← <span class="en">Home</span><span class="es">Inicio</span></a>
+    <h1><span class="en">Fieldwork supervision for BCBA and BCaBA candidates</span><span class="es">Supervisión de horas de práctica para candidatos a BCBA y BCaBA</span></h1>
+    <p class="lead"><span class="en">A flat monthly fee, a structured curriculum, and documentation kept ready for a BACB audit. Choose the fieldwork type that matches your plan.</span><span class="es">Una tarifa mensual fija, un currículo estructurado y documentación lista para una auditoría de la BACB. Elige el tipo de práctica que corresponda a tu plan.</span></p>
+  </div></div>
+  <div class="sec"><div class="wrap">
+    <div class="rates">
+      <div class="rate">
+        <p class="eyebrow">BCBA · BCaBA</p>
+        <h3><span class="en">Supervised Fieldwork</span><span class="es">Práctica Supervisada</span></h3>
+        <div class="amt">$375<small><span class="en">per month</span><span class="es">al mes</span></small></div>
+        <p><span class="en">The standard path. A steady pace that fits alongside a full caseload.</span><span class="es">La ruta estándar. Un ritmo constante que se combina con una carga completa de casos.</span></p>
+        <ul>
+          <li><span class="en">The supervision percentage the BACB requires each month</span><span class="es">El porcentaje de supervisión que la BACB exige cada mes</span></li>
+          <li><span class="en">Individual meetings and client observation with feedback</span><span class="es">Reuniones individuales y observación con clientes, con retroalimentación</span></li>
+          <li><span class="en">Monthly and final verification forms signed on time</span><span class="es">Formularios de verificación mensuales y final firmados a tiempo</span></li>
+        </ul>
+        <a class="btn" href="#contact"><span class="en">Ask about Supervised</span><span class="es">Consultar Práctica Supervisada</span></a>
+      </div>
+      <div class="rate dark">
+        <p class="eyebrow">BCBA · BCaBA</p>
+        <h3><span class="en">Concentrated Fieldwork</span><span class="es">Práctica Concentrada</span></h3>
+        <div class="amt">$475<small><span class="en">per month</span><span class="es">al mes</span></small></div>
+        <p><span class="en">More supervision every month in exchange for fewer total fieldwork hours.</span><span class="es">Más supervisión cada mes a cambio de menos horas totales de práctica.</span></p>
+        <ul>
+          <li><span class="en">The higher supervision percentage this path requires</span><span class="es">El porcentaje más alto de supervisión que exige esta ruta</span></li>
+          <li><span class="en">More frequent meetings and observation time</span><span class="es">Reuniones y tiempo de observación más frecuentes</span></li>
+          <li><span class="en">Monthly and final verification forms signed on time</span><span class="es">Formularios de verificación mensuales y final firmados a tiempo</span></li>
+        </ul>
+        <a class="btn gold" href="#contact"><span class="en">Ask about Concentrated</span><span class="es">Consultar Práctica Concentrada</span></a>
+      </div>
+    </div>
+
+    <div class="two" style="margin-top:64px">
+      <div>
+        <p class="eyebrow"><span class="en">Included in both</span><span class="es">Incluido en ambas</span></p>
+        <ul class="list">
+          <li><b><span class="en">A five-phase competency curriculum</span><span class="es">Un currículo de competencias en cinco fases</span></b><span><span class="en">From professional conduct and measurement through assessment, intervention design and supervising others.</span><span class="es">Desde conducta profesional y medición hasta evaluación, diseño de intervenciones y supervisión de otros.</span></span></li>
+          <li><b><span class="en">An hours tracker that checks itself</span><span class="es">Un registro de horas que se verifica solo</span></b><span><span class="en">Each month shows whether you met every BACB threshold, while there is still time to fix it.</span><span class="es">Cada mes muestra si cumpliste todos los requisitos de la BACB, cuando aún hay tiempo de corregir.</span></span></li>
+          <li><b><span class="en">Written feedback after observations</span><span class="es">Retroalimentación escrita tras cada observación</span></b><span><span class="en">What went well, one target to improve, and practice before the next session.</span><span class="es">Qué salió bien, un objetivo por mejorar y práctica antes de la siguiente sesión.</span></span></li>
+          <li><b><span class="en">Supervision in English or Spanish</span><span class="es">Supervisión en inglés o español</span></b><span><span class="en">Meetings and materials in the language you work in.</span><span class="es">Reuniones y materiales en el idioma en que trabajas.</span></span></li>
+        </ul>
+      </div>
+      <div>
+        <p class="eyebrow"><span class="en">How it works</span><span class="es">Cómo funciona</span></p>
+        <ol class="steps">
+          <li><div><b><span class="en">Intro call</span><span class="es">Llamada inicial</span></b><span><span class="en">We confirm your eligibility, your setting and which fieldwork type fits.</span><span class="es">Confirmamos tu elegibilidad, tu lugar de práctica y qué tipo de práctica te conviene.</span></span></div></li>
+          <li><div><b><span class="en">Signed supervision contract</span><span class="es">Contrato de supervisión firmado</span></b><span><span class="en">The BACB counts hours only after the contract is signed, so this comes first.</span><span class="es">La BACB solo cuenta las horas después de firmar el contrato; por eso es lo primero.</span></span></div></li>
+          <li><div><b><span class="en">Monthly cycle</span><span class="es">Ciclo mensual</span></b><span><span class="en">Meetings, observation, tracker review and your signed monthly form.</span><span class="es">Reuniones, observación, revisión del registro y tu formulario mensual firmado.</span></span></div></li>
+          <li><div><b><span class="en">Final verification</span><span class="es">Verificación final</span></b><span><span class="en">When your hours are complete, we sign the final form for your application.</span><span class="es">Al completar tus horas, firmamos el formulario final para tu aplicación.</span></span></div></li>
+        </ol>
+        <div class="note"><span class="en">BACB fieldwork requirements differ for BCBA and BCaBA candidates and change on January 1, 2027. We set up your plan against the standard that will apply when you submit your application.</span><span class="es">Los requisitos de práctica de la BACB son distintos para candidatos a BCBA y BCaBA y cambian el 1 de enero de 2027. Preparamos tu plan según el estándar que aplicará cuando envíes tu solicitud.</span></div>
+      </div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ================= MORE SERVICES ================= -->
+<section class="view" data-view="more-services">
+  <div class="phead"><div class="wrap">
+    <a class="back" href="#home">← <span class="en">Home</span><span class="es">Inicio</span></a>
+    <h1><span class="en">More services for ABA professionals</span><span class="es">Más servicios para profesionales de ABA</span></h1>
+    <p class="lead"><span class="en">Small things that make the job search and the paperwork easier.</span><span class="es">Pequeños servicios que facilitan la búsqueda de empleo y los trámites.</span></p>
+  </div></div>
+  <div class="sec"><div class="wrap">
+    <div class="rates">
+      <div class="rate">
+        <p class="eyebrow"><span class="en">Career</span><span class="es">Carrera</span></p>
+        <h3><span class="en">ABA-Focused CV</span><span class="es">Currículum enfocado en ABA</span></h3>
+        <div class="amt">$25</div>
+        <p><span class="en">A résumé that presents your training, credential and experience the way ABA agencies read them. Available in English or Spanish.</span><span class="es">Un currículum que presenta tu entrenamiento, credencial y experiencia como las agencias de ABA los leen. Disponible en inglés o español.</span></p>
+        <a class="btn" href="#contact"><span class="en">Order my CV</span><span class="es">Pedir mi currículum</span></a>
+      </div>
+      <div class="rate">
+        <p class="eyebrow"><span class="en">Paperwork</span><span class="es">Trámites</span></p>
+        <h3><span class="en">Document Notarization</span><span class="es">Notarización de Documentos</span></h3>
+        <div class="amt">$10</div>
+        <p><span class="en">Notary service for the forms and affidavits your employer or credentialing process asks for.</span><span class="es">Servicio notarial para los formularios y declaraciones que pide tu empleador o tu proceso de credenciales.</span></p>
+        <a class="btn" href="#contact"><span class="en">Book a notarization</span><span class="es">Reservar notarización</span></a>
+      </div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="view" data-view="contact">
+  <div class="sec contact"><div class="wrap cgrid">
+    <div>
+      <p class="eyebrow"><span class="en">Contact</span><span class="es">Contacto</span></p>
+      <h2 style="margin-top:10px"><span class="en">Tell us what you need</span><span class="es">Cuéntanos qué necesitas</span></h2>
+      <p style="margin-top:14px"><span class="en">We answer in English or Spanish, usually within one business day.</span><span class="es">Respondemos en inglés o español, normalmente en un día hábil.</span></p>
+      <div class="cinfo">
+        <div><small><span class="en">Phone</span><span class="es">Teléfono</span></small><span class="todo">add phone number</span></div>
+        <div><small>Email</small><span class="todo">add email address</span></div>
+        <div><small><span class="en">Service area</span><span class="es">Área de servicio</span></small><span><span class="en">Broward and Miami-Dade counties, Florida</span><span class="es">Condados de Broward y Miami-Dade, Florida</span></span></div>
+      </div>
+    </div>
+    <form id="contact-form" novalidate>
+      <div class="f2">
+        <label for="c-name"><span class="en">Full name</span><span class="es">Nombre completo</span><input id="c-name" name="name" autocomplete="name" required></label>
+        <label for="c-phone"><span class="en">Phone</span><span class="es">Teléfono</span><input id="c-phone" name="phone" type="tel" autocomplete="tel"></label>
+      </div>
+      <label for="c-email">Email<input id="c-email" name="email" type="email" autocomplete="email" required></label>
+      <label for="c-service"><span class="en">I am interested in</span><span class="es">Me interesa</span>
+        <select id="c-service" name="service">
+          <option value="aba">ABA Therapy / Terapia ABA</option>
+          <option value="competency">RBT Competency Assessment / Evaluación de Competencia</option>
+          <option value="renewal">RBT Renewal / Renovación RBT</option>
+          <option value="supervised">Supervised Fieldwork / Práctica Supervisada</option>
+          <option value="concentrated">Concentrated Fieldwork / Práctica Concentrada</option>
+          <option value="cv">ABA CV / Currículum</option>
+          <option value="notary">Notarization / Notarización</option>
+        </select>
+      </label>
+      <label for="c-msg"><span class="en">Message</span><span class="es">Mensaje</span><textarea id="c-msg" name="message"></textarea></label>
+      <button class="btn" type="submit"><span class="en">Send request</span><span class="es">Enviar solicitud</span></button>
+      <p id="form-status" role="status"></p>
+    </form>
+  </div></div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Ocean Behavioral Group · Miramar, Florida</span>
+    <span><a href="#aba-therapy"><span class="en">ABA Therapy</span><span class="es">Terapia ABA</span></a> · <a href="#rbt-services"><span class="en">RBT Services</span><span class="es">Servicios RBT</span></a> · <a href="#supervision"><span class="en">Supervision</span><span class="es">Supervisión</span></a> · <a href="#contact"><span class="en">Contact</span><span class="es">Contacto</span></a></span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var root = document.documentElement;
+  root.classList.add('js');
+  var views = ['home','aba-therapy','rbt-services','supervision','more-services','contact'];
+
+  function show(){
+    var h = (location.hash || '').replace('#','');
+    if (views.indexOf(h) === -1) h = 'home';
+    document.querySelectorAll('.view').forEach(function(v){
+      v.classList.toggle('on', v.getAttribute('data-view') === h);
+    });
+    document.querySelectorAll('nav a').forEach(function(a){
+      if (a.getAttribute('data-nav') === h) a.setAttribute('aria-current','page');
+      else a.removeAttribute('aria-current');
+    });
+    window.scrollTo(0,0);
+  }
+  window.addEventListener('hashchange', show);
+  show();
+
+  function setLang(l){
+    root.setAttribute('data-lang', l);
+    root.setAttribute('lang', l);
+    document.getElementById('lang-en').setAttribute('aria-pressed', String(l === 'en'));
+    document.getElementById('lang-es').setAttribute('aria-pressed', String(l === 'es'));
+    try { localStorage.setItem('obg-lang', l); } catch(e){}
+  }
+  var saved = null;
+  try { saved = localStorage.getItem('obg-lang'); } catch(e){}
+  if (saved === 'es' || saved === 'en') setLang(saved);
+  document.getElementById('lang-en').addEventListener('click', function(){ setLang('en'); });
+  document.getElementById('lang-es').addEventListener('click', function(){ setLang('es'); });
+
+  document.getElementById('contact-form').addEventListener('submit', function(e){
+    e.preventDefault();
+    var es = root.getAttribute('data-lang') === 'es';
+    document.getElementById('form-status').textContent = es
+      ? 'Vista previa: este formulario enviará mensajes cuando el sitio esté conectado a tu correo.'
+      : 'Preview only: this form will send messages once the site is connected to your email.';
+  });
+})();
+</script>
+</body>
 </html>
